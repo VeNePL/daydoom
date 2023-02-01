@@ -1,1 +1,98 @@
--- soon
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Daydoom PSX",
+   LoadingTitle = "PSX TradeScam",
+   LoadingSubtitle = "by ThunderRBLX",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = PSXDayDoom, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Daydoom PSX",
+      Subtitle = "Key System",
+      Note = "The key was shown on the video.",
+      FileName = "DDPSXKey",
+      SaveKey = false,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = "potato"
+   }
+})
+
+local Tab = Window:CreateTab("Trade Scam", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Trade")
+
+local Button = Tab:CreateButton({
+   Name = "Unpatch Script",
+   Callback = function()
+       Rayfield:Notify({
+   Title = "Daydoom script unpatcher",
+   Content = "Successfully unpatched the script. You can use it now.",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Toggle Trade Scam",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+local Label = Tab:CreateLabel("Working with these rarities: Secret, Exclusive, Mythical, Basic")
+
+local Tab2 = Window:CreateTab("Misc", 4483362458) -- Title, Image
+local Section = Tab2:CreateSection("Saving")
+
+local Button = Tab2:CreateButton({
+   Name = "Copy Game",
+   Callback = function()
+       saveinstance()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Section = Tab2:CreateSection("Movement")
+
+local Input = Tab2:CreateInput({
+   Name = "Speed Changer",
+   PlaceholderText = "Input Speed",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+       getgenv().WalkSpeedValue = (Text); --set your desired walkspeed here
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+local Input = Tab2:CreateInput({
+   Name = "Jump Changer",
+   PlaceholderText = "Input Jump",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
