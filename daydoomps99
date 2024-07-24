@@ -1,1 +1,136 @@
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local Window = Rayfield:CreateWindow({
+Name = "Daydoom PS99",
+LoadingTitle = "PS99 DupeMenu",
+LoadingSubtitle = "by ThunderRBLX",
+ConfigurationSaving = {
+Enabled = true,
+FolderName = nil, -- Create a custom folder for your hub/game
+FileName = "Big Hub"
+},
+Discord = {
+Enabled = false,
+Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+},
+KeySystem = true, -- Set this to true to use our key system
+KeySettings = {
+Title = "Daydoom PS99",
+Subtitle = "Key System",
+Note = "The key was shown on the video.",
+FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+Key = {"potato"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+}
+})
+
+local TabDuping = Window:CreateTab("Duping", 4483362458) -- Title, Image
+
+local Section = TabDuping:CreateSection("Dupe Titanic")
+local Button = TabDuping:CreateButton({
+Name = "Dupe Titanic",
+Callback = function()
+task.wait(2.5)
+Rayfield:Notify({
+   Title = "Duping",
+   Content = "Successfully duped your titanic, please rejoin the game.",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+end,
+})
+
+local Section = TabDuping:CreateSection("Dupe Huge")
+local Button = TabDuping:CreateButton({
+Name = "Dupe Huge",
+Callback = function()
+task.wait(2.5)
+Rayfield:Notify({
+   Title = "Duping",
+   Content = "Successfully duped your huge, please rejoin the game.",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+end,
+})
+
+local Section = TabDuping:CreateSection("Dupe Exclusive")
+local Button = TabDuping:CreateButton({
+Name = "Dupe Exclusive",
+Callback = function()
+task.wait(2.5)
+Rayfield:Notify({
+   Title = "Duping",
+   Content = "Successfully duped your exclusive, please rejoin the game.",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+end,
+})
+
+local TabMisc = Window:CreateTab("Misc", 4483362458) -- Title, Image
+
+local Section = TabMisc:CreateSection("Movement")
+
+local Input = TabMisc:CreateInput({
+   Name = "Speed Changer",
+   PlaceholderText = "Input Speed",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+       getgenv().WalkSpeedValue = (Text); --set your desired walkspeed here
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+local Input = TabMisc:CreateInput({
+   Name = "Jump Changer",
+   PlaceholderText = "Input Jump",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+
+local Section = TabMisc:CreateSection("Destroy GUI")
+local Button = TabMisc:CreateButton({
+Name = "Destroy GUI",
+Callback = function()
+Rayfield:Destroy()
+end,
+})
